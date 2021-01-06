@@ -50,8 +50,10 @@ func (m *IP) decode(b []byte) error {
 	m.SourceAddress = Ipv4(binary.BigEndian.Uint32(bs))
 	bs = buf.Next(4)
 	m.DestAddress = Ipv4(binary.BigEndian.Uint32(bs))
-	bs = buf.Next(len(b))
-	m.Options = bs
+	if m.IHL > 5 {
+		bs = buf.Next((m.IHL - 5) * 4)
+		m.Options = bs
+	}
 	return nil
 }
 
