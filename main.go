@@ -9,7 +9,7 @@ import (
 
 func main() {
 	var ip = &IP{}
-	b, err := hexStream2bytes("45000028bb9300003406abb27512e8c8c0a80107")
+	b, err := hexStream2bytes("450000282538400080069aa0c0a80645681a0bf0")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -22,7 +22,7 @@ func main() {
 	}
 }
 
-//45000028bb9300003406abb27512e8c8c0a80107
+//450000282538400080069aa0c0a80645681a0bf0
 func hexStream2bytes(hex string) ([]byte, error) {
 	if len(hex)%2 != 0 {
 		return nil, errors.New("hex 长度 无法被2整除")

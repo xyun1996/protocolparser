@@ -62,3 +62,25 @@ func Ipv4(nn uint32) string {
 	binary.BigEndian.PutUint32(ip, nn)
 	return ip.String()
 }
+
+type TCP struct {
+	SrcPort       uint16
+	DestPort      uint16
+	Seq           uint32 //sequence number
+	Ack           uint32 //acknowledgment number if ACK set
+	DataOffset    uint8  //4bit specifies the size of the tcp header in 32-bit words. minimum size 5 worlds, maximum is words
+	Reserved      uint8  //3bit zero value
+	NS            bool
+	CWR           bool //congestion window reduced
+	ECE           bool
+	URG           bool
+	ACK           bool
+	PSH           bool //push the buffered data to the receiving application
+	RST           bool //reset the connection
+	SYN           bool
+	FIN           bool   //last packet from sender.
+	WindowSize    uint16 //size of the receive window, specifies the number of window size units
+	Checksum      uint16
+	UrgentPointer uint16 //if urg set
+	Options       []byte //if data offset > 5.
+}
